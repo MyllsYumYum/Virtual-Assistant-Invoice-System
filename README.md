@@ -3,10 +3,13 @@
         - service class
         - add remove service function
         - user extends services
-    Just Finished
         - User menu
+    Just Finished
+        - looped extensive switch code at user menu
+        - fixed services
+        - finished services
     WIP
-        - Services
+        - try catch block not woking
     To Do
         - Connect MySQL and everything with it
         - client menu
