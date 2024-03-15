@@ -1,4 +1,4 @@
-## Update 4
+## Update 5
     Finished so far
         - service class
         - add remove service function
@@ -12,6 +12,8 @@
         - initiated invoiceList
     WIP
         - try catch block not woking
+        - client menu
+        - displayInvoice function under App class
     To Do
         - Connect MySQL and everything with it
         - client menu

@@ -68,6 +68,11 @@ class invoice{
 }
 
 public class App {
+    void displayInvoice(invoice voice, client dude){
+        //TO BE CONTINUED
+
+
+    }
     int currentUser = 0;
     int newint;
     void menu(int menum){
@@ -205,19 +210,27 @@ public class App {
                 }
                  break;   
             case 3: //Access client
-            System.out.println();
-                switch (sc.nextInt()) {
-                    case 1: //add client
-                    
-                    case 2: //delete client
-                        
-                    case 3: //access client records
-
-                    case 4: //return to main menu
-                        menu(0);
+                System.out.println();
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("11. ) Return to Main menu \n0. ) Add Client ");
+                for (int i = 0; i < clientList.size(); i++) {
+                    System.out.println(i+1 + ". ) " + clientList.get(i).clientName);
+                }
+                System.out.println();
+                newint = sc.nextInt();
+                switch (newint) {
+                    case 0: //add client
                         break;
-                
                     default:
+                        for (int i = 0; i < clientList.size(); i++) {
+                            if (i == newint -1) {
+                                System.out.println();
+                                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                                System.out.println("11. ) Return to Main menu \n0. ) Delete Client");
+                                System.out.println("1. ) Change name \n2. ) Get Invoice records");
+
+                            }
+                        }
                         menu(0);
                         break;
                 }
