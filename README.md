@@ -1,21 +1,18 @@
-## Getting Started
-
-
-update 4
+## Update 4
     Finished so far
-        service class
-        add remove service function
-        user extends services
+        - service class
+        - add remove service function
+        - user extends services
     Just Finished
-        User menu
+        - User menu
     WIP
-        Services
+        - Services
     To Do
-        Connect MySQL and everything with it
-        client menu
-        invoice menu
-        clients
-        invoices
+        - Connect MySQL and everything with it
+        - client menu
+        - invoice menu
+        - clients
+        - invoices
 
 
 ## Folder Structure
