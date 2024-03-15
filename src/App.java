@@ -69,8 +69,12 @@ class client{
 class invoice{
     int invoiceID = 0;
     int userKey = 0;
-    boolean[] serviceKeys = new boolean[10];
-    ArrayList<Integer> clientKeys = new ArrayList<Integer>();
+    String[] serviceNames = new String[10]; //invoice should provide name of services availed at that time
+    int[] serviceCosts = new int[10]; // invoice should provide costs of services availed at that time
+    float hours;
+    int total = 0;
+    String date;
+    int clientKey = 0;
 }
 
 public class App {
@@ -95,59 +99,189 @@ public class App {
                     System.out.println(index+1 + ". ) " + userList[index].name );
                 }
                 switch (sc.nextInt()) {
-                        case 0: //Adds new user
-                            if (userList[1] == null) {
-                                System.err.println("User slot empty, Please select or add a valid user");
-                                menu(1);
+                    case 0: //Adds new user
+                        for (int i = 0; i < 5; i++) {
+                            if (userList[i] == null) {
+                                userList[i] = new user();
+                                userList[i].name = sc.nextLine();
+                                userList[i].userID = i;
+                                currentUser = i;
                                 break;
                             }
-                            break;
+                        }
+                        System.err.println("User Slots Full, Please delete a user");
+                        break;
 
-                        case 1: //user 1
-                            if (userList[1] == null) {
-                                System.err.println("User slot empty, Please select or add a valid user");
+                    case 1: //user 1
+                    System.out.println();
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                        if (userList[0] == null) {
+                            System.err.println("User slot empty, Please select or add a valid user");
+                            menu(1);
+                            break;
+                        }
+                        System.out.println("1. ) Switch to user \n2. ) Return to user selection \n0. ) Delete User");
+                        switch (sc.nextInt()) {
+                            case 1:
+                                currentUser = 0;
+                                break;
+                        
+                            case 0: // insert user deletion code here
+                                
+                                break;
+                            default:
                                 menu(1);
                                 break;
-                            }
+                        }
+                        break;
+                    case 2: //user 2
+                    System.out.println();
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                        if (userList[1] == null) {
+                            System.err.println("User slot empty, Please select or add a valid user");
+                            menu(1);
                             break;
-                        case 2: //user 2
-                            if (userList[2] == null) {
-                                System.err.println("User slot empty, Please select or add a valid user");
+                        }
+                        System.out.println("1. ) Switch to user \n2. ) Return to user selection \n0. ) Delete User");
+                        switch (sc.nextInt()) {
+                            case 1:
+                                currentUser = 1;
+                                break;
+                        
+                            case 0: // insert user deletion code here
+                                
+                                break;
+                            default:
                                 menu(1);
                                 break;
-                            }
+                        }
+                        break;
+                        
+                    case 3: //user 3
+                    System.out.println();
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                        if (userList[2] == null) {
+                            System.err.println("User slot empty, Please select or add a valid user");
+                            menu(1);
                             break;
-                            
-                        case 3: //user 3
-                            if (userList[3] == null) {
-                                System.err.println("User slot empty, Please select or add a valid user");
+                        }
+                        System.out.println("1. ) Switch to user \n2. ) Return to user selection \n0. ) Delete User");
+                        switch (sc.nextInt()) {
+                            case 1:
+                                currentUser = 2;
+                                break;
+                        
+                            case 0: // insert user deletion code here
+                                
+                                break;
+                            default:
                                 menu(1);
                                 break;
-                            }
+                        }
+                        break;
+
+                    case 4: //user 4
+                    System.out.println();
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                        if (userList[3] == null) {
+                            System.err.println("User slot empty, Please select or add a valid user");
+                            menu(1);
                             break;
-    
-                        case 4: //user 4
-                            if (userList[4] == null) {
-                                System.err.println("User slot empty, Please select or add a valid user");
-                                menu(3);
+                        }
+                        System.out.println("1. ) Switch to user \n2. ) Return to user selection \n0. ) Delete User");
+                        switch (sc.nextInt()) {
+                            case 1:
+                                currentUser = 3;
                                 break;
-                            }
-                            break;
-                        case 5: //user 5
-                            if (userList[5] == null) {
-                                System.err.println("User slot empty, Please select or add a valid user");
+                        
+                            case 0: // insert user deletion code here
+                                
+                                break;
+                            default:
                                 menu(1);
                                 break;
-                            }
+                        }
+                        break;
+                    case 5: //user 5
+                    System.out.println();
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                        if (userList[4] == null) {
+                            System.err.println("User slot empty, Please select or add a valid user");
+                            menu(1);
                             break;
-                    
-                        default:
-                            menu(0);
-                            break;
+                        }
+                        System.out.println("1. ) Switch to user \n2. ) Return to user selection \n0. ) Delete User");
+                        switch (sc.nextInt()) {
+                            case 1:
+                                currentUser = 4;
+                                break;
+                        
+                            case 0: // insert user deletion code here
+                                
+                                break;
+                            default:
+                                menu(1);
+                                break;
+                        }
+                        break;
+                
+                    default:
+                        menu(0);
+                        break;
                 }
+                break;
             case 2: //Access services
             System.out.println();
-                    
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println(" 00. ) exit to main menu \n0. ) Add service");
+                for (int index = 0; index < 10; index++) {
+                    if (userList[currentUser].serviceNames[index] == null) {
+                        break;
+                    }
+                    System.out.println(index+1 + ". ) " + userList[currentUser].serviceNames[index] + " - " + userList[currentUser].serviceCosts[index] + " per Hour" );
+                }
+                switch (sc.nextInt()) {
+                    case 0: // add new service
+                        
+                        break;
+                    case 1:
+                        if (userList[currentUser].serviceNames[1] == null) {
+                            System.err.println("Service Slot empty, please add or choose a valid service");
+                        }
+                        System.out.println();
+                        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                        System.out.println("0. ) Delete service \n1. ) Change name \n2. ) Change cost \n3. ) Return to Services");
+                        switch (sc.nextInt()) {
+                            case 0: // Insert Deletion Code Here
+                                
+                                break;
+                        
+                            case 1:
+                                try {
+                                    System.out.println("Enter new Service Name");
+                                    userList[currentUser].serviceNames[0] = sc.nextLine();
+                                } catch (Exception e) {
+                                    // TODO: handle exception
+                                }
+                                break;
+                            case 2:
+                                try {
+                                    System.out.println("Enter new Service Cost");
+                                    userList[currentUser].serviceCosts[0] = sc.nextInt();
+                                } catch (Exception e) {
+                                    // TODO: handle exception
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+                
+                    default:
+                        break;
+                }
+                 break;   
             case 3: //Access client
             System.out.println();
                 switch (sc.nextInt()) {
@@ -165,19 +299,21 @@ public class App {
                         menu(0);
                         break;
                 }
-                
+                break;
             case 4: //Access invoices
             System.out.println();
                 
+                break;
             
             case 9: //Exit program
             System.out.println();
             System.err.println("Closing Command Line Process");
             System.exit(1);
             default:
-                menu(0);
+                
                 break;
         }
+        menu(0);
     }
     Scanner sc = new Scanner(System.in);
     user[] userList = new user[5];

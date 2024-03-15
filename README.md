@@ -1,6 +1,22 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+
+update 4
+    Finished so far
+        service class
+        add remove service function
+        user extends services
+    Just Finished
+        User menu
+    WIP
+        Services
+    To Do
+        Connect MySQL and everything with it
+        client menu
+        invoice menu
+        clients
+        invoices
+
 
 ## Folder Structure
 
