@@ -52,6 +52,7 @@ class user extends services{
 
 class client{
     int clientID = 0;
+    String clientName = "Jane Defoe";
     ArrayList<Integer> invoiceKeys = new ArrayList<Integer>();
 
 }
@@ -168,6 +169,7 @@ public class App {
                             if (i == newint - 1) {
                                 if (userList[currentUser].serviceNames[i] == null) {
                                     System.err.println("Service Slot empty, please add or choose a valid service");
+                                    menu(2);
                                     break;
                                 
                             }
@@ -197,7 +199,7 @@ public class App {
                                     break;
                             }
                             
-                            }                            
+                            }               
                         }
                         break;
                 }
@@ -237,10 +239,16 @@ public class App {
     }
     Scanner sc = new Scanner(System.in);
     user[] userList = new user[5];
+    ArrayList<client> clientList = new ArrayList<client>();
+    ArrayList<invoice> invoiceList = new ArrayList<invoice>();
+    
     
     
     App(){
         userList[0] = new user();
+        clientList.add(new client());
+        invoiceList.add(new invoice());
+        System.out.println(clientList.get(0).clientName);
         menu(0);
         //
     }

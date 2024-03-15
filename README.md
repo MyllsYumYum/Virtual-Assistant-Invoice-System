@@ -5,9 +5,11 @@
         - user extends services
         - User menu
     Just Finished
-        - looped extensive switch code at user menu
+        - optimized extensive switch code with loop
         - fixed services
         - finished services
+        - initiated clientList
+        - initiated invoiceList
     WIP
         - try catch block not woking
     To Do
