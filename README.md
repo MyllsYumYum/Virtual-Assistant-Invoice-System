@@ -1,20 +1,18 @@
 ## Update 6
     Finished so far
         - service class
-        - add remove service function
-        - user extends services
+        - Service Menu
         - User menu
+        - Client Menu
     Just Finished
-        - fixes here and there 
-        - additions here and there
+        - Client Menu
+        - most of Invoice menu?
     WIP
         - try catch block not woking
-        - client menu
+        - Invoice
     To Do
         - Connect MySQL and everything with it
-        - client menu
         - invoice menu
-        - clients
         - invoices
 
 
