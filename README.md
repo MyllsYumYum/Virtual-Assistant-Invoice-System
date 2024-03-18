@@ -1,19 +1,15 @@
-## Update 5
+## Update 6
     Finished so far
         - service class
         - add remove service function
         - user extends services
         - User menu
     Just Finished
-        - optimized extensive switch code with loop
-        - fixed services
-        - finished services
-        - initiated clientList
-        - initiated invoiceList
+        - fixes here and there 
+        - additions here and there
     WIP
         - try catch block not woking
         - client menu
-        - displayInvoice function under App class
     To Do
         - Connect MySQL and everything with it
         - client menu
