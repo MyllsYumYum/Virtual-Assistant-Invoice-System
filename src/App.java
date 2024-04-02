@@ -57,7 +57,7 @@ class client{
     boolean checkInKey(int key){
         return invoiceKeys.contains(key);
     }
-    client(){
+    void Initclient(){
         invoiceKeys.add(0);
         invoiceKeys.add(1);
     }
@@ -280,7 +280,6 @@ public class App {
                 newint = sc.nextInt();
                 switch (newint) {
                     case 0: //add client
-                        // To Be Continued
                         clientList.add(new client());
                         clientList.getLast().clientID = clientList.size()-1;
                         System.out.println("Enter New Client Name");
@@ -293,6 +292,7 @@ public class App {
                             if (i == newint -1) {
                                 System.out.println();
                                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                                System.out.println("Name : " + clientList.get(i).clientName + "\nClient ID : " + clientList.get(i).clientID);
                                 System.out.println("11. ) Return to Main menu \n0. ) Delete Client");
                                 System.out.println("1. ) Change name \n2. ) Get Invoice records");
                                 newint = sc.nextInt();
@@ -348,7 +348,6 @@ public class App {
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.println("11. ) Return to Main menu \n0. ) Add Invoice");
             for (int i = 0; i < invoiceList.size(); i++) {
-                //String cliName = ;
                 System.out.println(i+1 + ". ) Invoice ID: " + invoiceList.get(i).invoiceID + " ~~~ Client ID : " + invoiceList.get(i).clientKey + " ~~~ User ID : " + invoiceList.get(i).userKey);
                 System.out.println("    Date : " + invoiceList.get(i).date[0] +" / "+ invoiceList.get(i).date[1] +" / "+ invoiceList.get(i).date[2] +" ~~~ Total : " + invoiceList.get(i).total);
 
@@ -357,6 +356,7 @@ public class App {
             newint = sc.nextInt();
             switch (newint) {
                 case 0: // Add Invoice
+                    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     invoiceList.add(new invoice());
                     invoiceList.getLast().invoiceID = invoiceList.size()-1;
                     System.out.println("Enter Day");
@@ -370,7 +370,7 @@ public class App {
                         System.out.println( (i + 1) + ". ) " + clientList.get(i).clientName);
                     }
                     newint = sc.nextInt();
-                    invoiceList.getLast().clientKey = newint - 1; // revision to get client id instead
+                    invoiceList.getLast().clientKey = newint - 1; // revise to get client id instead
                     invoiceList.getLast().userKey = currentUser;
                     System.out.println("Enter the Hours of Service");
                     invoiceList.getLast().hours = sc.nextFloat();
@@ -394,7 +394,8 @@ public class App {
             
                 default:
                     for (int i = 0; i < invoiceList.size(); i++) {
-                        if (newint -1 == i) { //
+                        if (newint - 1 == i) { 
+                            int lastserv = 0;
                             System.out.println();
                             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ");
                             System.out.println("Invoice ID: " + invoiceList.get(i).invoiceID + " ~~~ Client ID : " + invoiceList.get(i).clientKey + " ~~~ User ID : " + invoiceList.get(i).userKey);
@@ -405,28 +406,70 @@ public class App {
                                     break;
                                 }
                                 System.out.println("  " + invoiceList.get(i).serviceNames[j] + " ~~~ " + invoiceList.get(i).serviceCosts[j] );
+                                lastserv = j;
                             }
                             System.out.println("Total : " + invoiceList.get(i).total + " ~~~ Hours : " + invoiceList.get(i).hours);
                             System.out.println();
-                            System.out.println("1. ) Add service \n 2. ) Delete service \n 3. ) Change hours \n 11. ) Return to invoices");
+                            System.out.println(" 1. ) Add service \n 2. ) Delete service \n 3. ) Change hours \n 11. ) Return to invoices");
                             
                             newint = sc.nextInt();
                             switch (newint) {
-                                case 1:
-                                    
+                                case 1: //  ADD SERVICES
+                                    System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \nChoose from Currently Available Services");
+                                    System.err.println( "0. ) Return to menu");
+                                    for (int j = 0; j < 10 ; j++) {
+                                        String serv = userList[currentUser].serviceNames[j];
+                                        if (serv != null) {
+                                            //choose from list of 
+                                            System.out.println(j + 1 + " .) " + serv);
+                                        }
+                                    }
+                                    newint = sc.nextInt();
+                                    //sc.nextLine();
+                                    if (newint == 0){
+                                        break;
+                                    } else {
+                                        
+                                        invoiceList.get(i).serviceNames[lastserv + 1] = userList[currentUser].serviceNames[newint - 1];
+                                        invoiceList.get(i).serviceCosts[lastserv + 1] = userList[currentUser].serviceCosts[newint - 1];
+                                        invoiceList.get(i).total();
+                                    }
                                     break;
                             
-                                case 2:
-                                    
+                                case 2: //  Delete Services
+                                    System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \nChoose service to remove \n 0. ) Cancel");
+                                    for (int j = 0; j < 10; j++) {
+                                        if (invoiceList.get(i).serviceNames[j] == null) {
+                                            break;
+                                        }
+                                        System.out.println(" " + (j+1) + ". ) " + invoiceList.get(i).serviceNames[j]);
+                                    }
+                                    newint = sc.nextInt();
+                                    if (newint == 0){
+                                        break;
+                                    } else {
+                                        
+                                        invoiceList.get(i).serviceNames[newint - 1] = null;
+                                        invoiceList.get(i).serviceCosts[newint - 1] = 0;
+                                        invoiceList.get(i).total();
+                                    }
+
                                     break;
                             
                                 case 3:
-                                    
+                                    System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n How many Hours?");
+                                    invoiceList.get(i).hours = sc.nextFloat();
+                                    invoiceList.get(i).total();
                                     break;
                             
+                                case 11:
+                                    menu(4);
+                                    break;
                                 default:
+                                    menu(4);
                                     break;
                             }
+                        break;
                         }
                     }
                     break;
@@ -458,6 +501,7 @@ public class App {
     App(){
         userList[0] = new user();
         clientList.add(new client());
+        clientList.get(0).Initclient();
         invoiceList.add(new invoice());
         invoiceList.add(new invoice());
         invoiceList.get(1).newInvoiceTest();

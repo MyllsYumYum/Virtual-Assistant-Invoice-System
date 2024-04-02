@@ -1,19 +1,19 @@
-## Update 6
+## Update 7
     Finished so far
+        - User menu
         - service class
         - Service Menu
-        - User menu
         - Client Menu
+        - Invoice Menu
     Just Finished
-        - Client Menu
-        - most of Invoice menu?
+        - Invoice Menu
     WIP
         - try catch block not woking
-        - Invoice
+        - Connect MySQL and everything With it
+        - Test Program
     To Do
         - Connect MySQL and everything with it
-        - invoice menu
-        - invoices
+        - Optimize?
 
 
 ## Folder Structure
